@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.5.3/dist/css/foundation.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css?family=Be+Vietnam&display=swap" rel="stylesheet">
+    <title>Pokemon</title>
+  </head>
+
+  <body>
+    <header class="head">
+      <h1 class="title">Pokedex!</h1>
+    </header>
+
+    <div id="modal-container">
+      <div class="modal" id="modal-content">
+        <button class="close-button" id="modal-close-btn">Close</button>
+        <h1 class="title-name" id="modal-title"></h1>
+        <div class="modal-details-container row">
+          <div class="columns display">
+            <img src="" alt="" id="modal-image">
+          </div>
+          <div class="columns display">
+            <p class="height" id="modal-height"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container row align-center">
+      <ul class="pokemon-list" id="list"></ul>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <!-- <script src="js/promise-polyfill.js"></script>
+    <script src="js/fetch.js"></script> -->
+    <script src="https://code.jquery.com/pep/0.4.3/pep.js"></script>
+    <script src="js/scripts.js"></script>
+  </body>
+</html>
