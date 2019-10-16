@@ -15,6 +15,10 @@ body {
 
 /*Pokemon List*/
 
+.container {
+  display: flex;
+}
+
 .title{
   color: #7DB349;
   margin: 2em 0em 1em 0em;

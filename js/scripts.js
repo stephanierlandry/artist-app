@@ -2,24 +2,15 @@ var pokemonRepository = (
   function(){
     let repository = [];
 
+    const APIURL = 'https://pokeapi.co/api/v2/pokemon/';
     //Loads Pokemon Details
 
     function loadDetails(item){
-      const url = item.detailsUrl;
-     console.log(url);
-     return $.ajax(url)
-       .then(function (details) {
-         item.imageUrl = details.sprites.front_default;
-         item.height = details.height;
-       })
-       .catch(function (error) {
-         console.error(error);
-       });
+
     }
 
     loadDetails();
     //Loading & Adding from API
-    const APIURL = 'https://pokeapi.co/api/v2/pokemon/';
 
     function loadList(){
       return (
@@ -62,10 +53,10 @@ var pokemonRepository = (
     function showModal(pokemon){
       $(modalTitle).text(pokemon.name);
       $($modalContainer).toggleClass('visible');
+
     }
 
     //Hide modal
-
     function hideModal(){
       $($modalContainer).removeClass('visible');
     }
@@ -75,7 +66,7 @@ var pokemonRepository = (
         hideModal();
     });
 
-    $modalContainer.on('click', (e) => {
+    $($modalContainer).on('click', (e) => {
       var target = e.target;
       if (target === $modalContainer){
         hideModal();
