@@ -5,7 +5,16 @@ var pokemonRepository = (
     //Loads Pokemon Details
 
     function loadDetails(item){
-
+      const url = item.detailsUrl;
+     console.log(url);
+     return $.ajax(url)
+       .then(function (details) {
+         item.imageUrl = details.sprites.front_default;
+         item.height = details.height;
+       })
+       .catch(function (error) {
+         console.error(error);
+       });
     }
 
     loadDetails();
@@ -56,7 +65,7 @@ var pokemonRepository = (
     }
 
     //Hide modal
-    
+
     function hideModal(){
       $($modalContainer).removeClass('visible');
     }
