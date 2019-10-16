@@ -5,9 +5,10 @@ var pokemonRepository = (
     //Loads Pokemon Details
 
     function loadDetails(item){
-      const url = item.detailsUrl;
+
     }
 
+    loadDetails();
     //Loading & Adding from API
     const APIURL = 'https://pokeapi.co/api/v2/pokemon/';
 
@@ -52,18 +53,24 @@ var pokemonRepository = (
     function showModal(pokemon){
       $(modalTitle).text(pokemon.name);
       $($modalContainer).toggleClass('visible');
-
     }
 
     //Hide modal
+    
     function hideModal(){
       $($modalContainer).removeClass('visible');
     }
 
-
     $(window).on('keydown', (e) => {
       if (e.key === 'Escape' && $modalContainer.hasClass('visible'))
         hideModal();
+    });
+
+    $modalContainer.on('click', (e) => {
+      var target = e.target;
+      if (target === $modalContainer){
+        hideModal();
+      }
     });
 
     //Adds the button for each new pokemon
