@@ -3,13 +3,25 @@ var pokemonRepository = (
     let repository = [];
 
     const APIURL = 'https://pokeapi.co/api/v2/pokemon/';
+
     //Loads Pokemon Details
 
-    function loadDetails(item){
+    function loadDetails(pokemon){
+      //pokemon is defined in showModal method
+      const url = pokemon.detailsUrl;
 
+      return $.get(url).then(function(response){
+        //response returns all of the details from the API
+        return response;
+      }).then(function(details){
+        //pokemon defined in loadDetails argument
+        pokemon.imageUrl = details.sprites.front_default;
+        pokemon.height = details.height
+      }).catch(function(error){
+        console.log(error);
+      })
     }
 
-    loadDetails();
     //Loading & Adding from API
 
     function loadList(){
@@ -23,7 +35,9 @@ var pokemonRepository = (
               detailsUrl:  item.url
             };
             add(pokemon);
-          })
+          });
+        }).catch(function(error){
+          console.log(error);
         })
       )
     }
@@ -51,9 +65,17 @@ var pokemonRepository = (
     const modalHeight = $('#modal-height');
 
     function showModal(pokemon){
+      //pokemon defined in addListItem method
       $(modalTitle).text(pokemon.name);
-      $($modalContainer).toggleClass('visible');
+      $($modalContainer).addClass('visible');
 
+      function showDetails(pokemon){
+        pokemonRepository.loadDetails(pokemon).then(function(){
+          $(modalHeight).text('height' + pokemon.height);
+          $(modalImage).attr('src', pokemon.imageUrl ).prop('alt', 'This is an image of' + pokemon.name);
+        })
+      }
+      showDetails(pokemon);
     }
 
     //Hide modal
@@ -67,8 +89,11 @@ var pokemonRepository = (
     });
 
     $($modalContainer).on('click', (e) => {
-      var target = e.target;
-      if (target === $modalContainer){
+      //jQuery stored $modalContainer as an object instead of the DOM element
+      //the actual DOM element had to be selected out of the array
+      //$modalContainer was logged in the console and compared to e.target
+      //being logged as well. Element was position 0
+      if (e.target === $modalContainer[0]){
         hideModal();
       }
     });
@@ -78,9 +103,10 @@ var pokemonRepository = (
     const $ul = $('#list');
 
     function addListItem(pokemon){
-      const button =  document.createElement('button');
+      //pokemon is defined in getAll method after loadList is called
+      const button = $('<button class="btn">' + pokemon.name + '</button>');
 
-      $(button).text(pokemon.name).addClass('btn').on('click', function(e){
+      $(button).on('click', function(e){
         showModal(pokemon);
       })
 
@@ -99,6 +125,8 @@ var pokemonRepository = (
 
 pokemonRepository.loadList().then(function(){
   pokemonRepository.getAll().forEach(function(pokemon){
+    // pokemon is defined by being inside the repository
+    // that is populated by the loadList method
     pokemonRepository.addListItem(pokemon);
   });
 });
