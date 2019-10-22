@@ -56,6 +56,7 @@ var pokemonRepository = (
 
     //Show Pokemon modal
 
+    const modalCenter = $('#ModalCenter');
     const $modalContainer = $('#modal-container');
     const modalCloseButton = $('#modal-close-btn').on('click', function(){
       hideModal();
@@ -66,11 +67,11 @@ var pokemonRepository = (
 
     function showModal(pokemon){
       //pokemon defined in addListItem method
-      $(modalTitle).text(pokemon.name);
-      $($modalContainer).addClass('visible');
+      $('#ModalCenter').modal();
 
       function showDetails(pokemon){
         pokemonRepository.loadDetails(pokemon).then(function(){
+          $(modalTitle).text(pokemon.name);
           $(modalHeight).text('height' + pokemon.height);
           $(modalImage).attr('src', pokemon.imageUrl ).prop('alt', 'This is an image of' + pokemon.name);
         })
@@ -80,20 +81,20 @@ var pokemonRepository = (
 
     //Hide modal
     function hideModal(){
-      $($modalContainer).removeClass('visible');
+      $(modalCenter).modal('hide');
     }
 
     $(window).on('keydown', (e) => {
-      if (e.key === 'Escape' && $modalContainer.hasClass('visible'))
+      if (e.key === 'Escape')
         hideModal();
     });
 
-    $($modalContainer).on('click', (e) => {
+    $(modalCenter).on('click', (e) => {
       //jQuery stored $modalContainer as an object instead of the DOM element
       //the actual DOM element had to be selected out of the array
       //$modalContainer was logged in the console and compared to e.target
       //being logged as well. Element was position 0
-      if (e.target === $modalContainer[0]){
+      if (e.target === modalCenter[0]){
         hideModal();
       }
     });
@@ -104,7 +105,7 @@ var pokemonRepository = (
 
     function addListItem(pokemon){
       //pokemon is defined in getAll method after loadList is called
-      const button = $('<button class="btn">' + pokemon.name + '</button>');
+      const button = $('<button class="btn" data-toggle="modal" data-target="#ModalCenter">' + pokemon.name + '</button>');
 
       $(button).on('click', function(e){
         showModal(pokemon);
