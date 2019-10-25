@@ -42,13 +42,13 @@ var pokemonRepository = (
       )
     }
 
-    // add the pokemon
+    // Add the Pokemon
 
     function add(pokemon) {
       repository.push(pokemon);
     }
 
-    // get all the pokemon
+    // Get all the Pokemon
 
     function getAll() {
       return repository;
@@ -58,16 +58,15 @@ var pokemonRepository = (
 
     const modalCenter = $('#ModalCenter');
     const $modalContainer = $('#modal-container');
-    const modalCloseButton = $('#modal-close-btn').on('click', function(){
-      hideModal();
-    });
     const modalTitle = $('#modal-title');
     const modalImage = $('#modal-image');
     const modalHeight = $('#modal-height');
 
     function showModal(pokemon){
       //pokemon defined in addListItem method
-      $('#ModalCenter').modal();
+      $(modalCenter).modal();
+
+  // Show Details of Pokemon
 
       function showDetails(pokemon){
         pokemonRepository.loadDetails(pokemon).then(function(){
@@ -79,33 +78,13 @@ var pokemonRepository = (
       showDetails(pokemon);
     }
 
-    //Hide modal
-    function hideModal(){
-      $(modalCenter).modal('hide');
-    }
-
-    $(window).on('keydown', (e) => {
-      if (e.key === 'Escape')
-        hideModal();
-    });
-
-    $(modalCenter).on('click', (e) => {
-      //jQuery stored $modalContainer as an object instead of the DOM element
-      //the actual DOM element had to be selected out of the array
-      //$modalContainer was logged in the console and compared to e.target
-      //being logged as well. Element was position 0
-      if (e.target === modalCenter[0]){
-        hideModal();
-      }
-    });
-
     //Adds the button for each new pokemon
 
     const $ul = $('#list');
 
     function addListItem(pokemon){
       //pokemon is defined in getAll method after loadList is called
-      const button = $('<button class="btn" data-toggle="modal" data-target="#ModalCenter">' + pokemon.name + '</button>');
+      const button = $('<button class="button list-group-item" data-toggle="modal" data-target="#ModalCenter">' + pokemon.name + '</button>');
 
       $(button).on('click', function(e){
         showModal(pokemon);

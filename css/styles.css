@@ -1,3 +1,6 @@
+
+/*Global*/
+
 * {
   box-sizing: border-box;
 }
@@ -37,15 +40,16 @@ body {
   }
 }
 
-.btn {
+.button {
   background-color:#4056B3;
   color: white;
   padding: 2em;
   width: 10em;
   text-align: center;
+  border-radius:.5em;
 }
 
-.btn:hover {
+.button:hover {
   transition: all .25s ease-in-out;
   cursor: pointer;
   opacity: .75;
@@ -63,45 +67,15 @@ body {
 
 /*Modal*/
 
-#modal-container{
-  display: none;
-}
-
-#modal-container.visible{
-  position: fixed;
-  padding: 20px;
-  box-sizing: border-box;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  background: rgba(0, 0, 0, 0.5);
-  z-index: 999; /* to show it above other content */
-  overflow: auto; /* to allow scrolling if the screen is not high enough*/
-}
-
 .modal {
  display: inline-block;
  box-sizing: border-box;
  background: #F7F0EF;
  padding: 1em;
- width: auto;
  height: auto;
- max-width: 385px;
  text-align: center;
  position: absolute;
  border-radius: .5em;
-}
-
-@media all and (max-width: 250px){
-  .modal{
-    max-width: 250px;
-
-  }
 }
 
 @media all and (min-width: 250px) and (max-width: 750px){
@@ -113,6 +87,7 @@ body {
 
 .modal-header{
   border: none;
+  justify-content: center;
 }
 
 .modal-header.close{
