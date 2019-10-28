@@ -71,7 +71,7 @@ var pokemonRepository = (
       function showDetails(pokemon){
         pokemonRepository.loadDetails(pokemon).then(function(){
           $(modalTitle).text(pokemon.name);
-          $(modalHeight).text('height' + pokemon.height);
+          $(modalHeight).text('height ' + pokemon.height);
           $(modalImage).attr('src', pokemon.imageUrl ).prop('alt', 'This is an image of' + pokemon.name);
         })
       }

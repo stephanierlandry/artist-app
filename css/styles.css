@@ -16,6 +16,29 @@ body {
   width: 100%;
 }
 
+/*Navigation*/
+
+.navbar {
+  background-color: #4056B3;
+  color: white;
+  justify-content: flex-end;
+}
+
+.navbar-nav {
+  justify-content: flex-end;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+  color: white;
+}
+
+.navbar-collapse {
+  justify-content: flex-end;
+}
+
+.nav-link{
+  color:white;
+}
 /*Pokemon List*/
 
 .container {
@@ -28,8 +51,8 @@ body {
 }
 
 .title{
-  color: #7DB349;
-  margin: 2em 0em 1em 0em;
+  color: #59564B;
+  margin: 3em 0em 1em .25em;
   display: flex;
   justify-content: center;
 }
@@ -68,13 +91,8 @@ body {
 /*Modal*/
 
 .modal {
- display: inline-block;
  box-sizing: border-box;
- background: #F7F0EF;
- padding: 1em;
- height: auto;
  text-align: center;
- position: absolute;
  border-radius: .5em;
 }
 
@@ -82,6 +100,7 @@ body {
   .modal{
     max-width: 250px;
     position: relative;
+    display: none;
   }
 }
 
@@ -105,7 +124,7 @@ body {
 }
 
 .title-name{
-  color: #7DB349;
+  color: #609b00;
   padding: .5em;
 }
 
