@@ -2,7 +2,7 @@ var pokemonRepository = (
   function(){
     let repository = [];
 
-    const APIURL = 'https://pokeapi.co/api/v2/pokemon/';
+    const APIURL = 'https://api.art.rmngp.fr/v1/works';
 
     //Loads Pokemon Details
 
@@ -27,6 +27,7 @@ var pokemonRepository = (
     function loadList(){
       return (
         $.get(APIURL).then(function(response){
+          console.log(response);
           return response.results;
         }).then(function(json) {
           $.each(json, function(ii, item){
