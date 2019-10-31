@@ -22,6 +22,7 @@ body {
   background-color: #4056B3;
   color: white;
   justify-content: flex-end;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 3, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .navbar-nav {
@@ -75,7 +76,7 @@ body {
 .button:hover {
   transition: all .25s ease-in-out;
   cursor: pointer;
-  opacity: .75;
+  opacity: .85;
 }
 
 .pokemon-list {
@@ -123,7 +124,7 @@ body {
   height:100%;
 }
 
-.title-name{
+.title-name {
   color: #609b00;
   padding: .5em;
 }
